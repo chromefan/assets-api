@@ -22,7 +22,7 @@ type Assets struct {
 	Ctime       int64
 	Mtime       int64
 	Remark      string
-	Uid      int64
+	Uid         int64
 }
 
 func PageList(page, pageSize int) ([]*Assets, int64) {
