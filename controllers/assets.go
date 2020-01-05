@@ -15,14 +15,14 @@ func (c *BaseController) Save() {
 	defer func() {
 		c.ResponseDone(resp)
 	}()
-	assets :=  new(models.Assets)
+	assets := new(models.Assets)
 	assets.Id, _ = c.GetInt("id")
 	assets.TypeName = c.GetString("type_name")
-	assets.Cost,_ = c.GetFloat("cost")
-	assets.MarketValue,_ = c.GetFloat("market_value")
-	assets.Earnings,_ = c.GetFloat("earnings")
-	assets.Roa,_ = c.GetFloat("roa")
-	assets.Ratio,_ = c.GetFloat("ratio")
+	assets.Cost, _ = c.GetFloat("cost")
+	assets.MarketValue, _ = c.GetFloat("market_value")
+	assets.Earnings, _ = c.GetFloat("earnings")
+	assets.Roa, _ = c.GetFloat("roa")
+	assets.Ratio, _ = c.GetFloat("ratio")
 	assets.Details = c.GetString("details")
 	assets.Remark = c.GetString("remark")
 	fmt.Println(assets)
@@ -34,7 +34,7 @@ func (c *BaseController) Save() {
 			resp.Error = &errors.SaveError
 			return
 		}
-	}else{
+	} else {
 		assets.Mtime = now
 		_, err := models.UpdateById(assets)
 		if err != nil {
@@ -44,8 +44,8 @@ func (c *BaseController) Save() {
 	}
 	saveLog(assets)
 }
-func saveLog(assets *models.Assets)  {
-	assetsLog :=  new(models.AssetsLog)
+func saveLog(assets *models.Assets) {
+	assetsLog := new(models.AssetsLog)
 	assetsLog.Id = assets.Id
 	assetsLog.TypeName = assets.TypeName
 	assetsLog.Cost = assets.Cost
