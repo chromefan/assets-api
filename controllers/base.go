@@ -20,7 +20,7 @@ func NewResponse() *Response {
 
 type Response struct {
 	Error   *errors.ErrorCode
-	Result  interface{} `json:"'[]'"`
+	Result  interface{}	`json:"'[]'"`
 	Header  map[string]string
 	TraceId uint64
 }
@@ -28,7 +28,7 @@ type Response struct {
 func (c *BaseController) ResponseDone(resp *Response) {
 	result := make(map[string]interface{})
 	result["errno"] = resp.Error.Errno
-	if resp.Error.Errno != 0 {
+	if resp.Error.Errno !=0 {
 		result["errmsg"] = resp.Error.ErrMsg
 	}
 	if resp.Error.Errno == 0 {

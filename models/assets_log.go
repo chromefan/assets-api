@@ -21,7 +21,7 @@ type AssetsLog struct {
 	Details     string
 	Remark      string
 	Ctime       int64
-	Uid         int64
+	Uid       int64
 }
 
 func LogPageList(page, pageSize int) ([]*AssetsLog, int64) {

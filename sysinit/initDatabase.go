@@ -28,7 +28,7 @@ func InitDatabase() {
 	//数据库时区
 	timezone := beego.AppConfig.String(dbType + "::db_timezone")
 
-	dsn := dbUser + ":" + dbPwd + "@tcp(" + dbHost + ":" + dbPort + ")/" + dbName + "?charset=" + dbCharset
+	dsn := dbUser+":"+dbPwd+"@tcp("+dbHost+":"+ dbPort+")/"+dbName+"?charset="+dbCharset
 	if timezone != "" {
 		dsn = dsn + "&loc=" + url.QueryEscape(timezone)
 	}
