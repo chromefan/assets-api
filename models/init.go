@@ -7,7 +7,7 @@ import (
 
 // init 初始化
 func init() {
-	orm.RegisterModel(new(Assets), new(AssetsLog))
+	orm.RegisterModel(new(Assets), new(AssetsLog),new(WorkDay),new(WorkGroup),new(WorkProject))
 }
 
 // TableName 下面是统一的表名管理
@@ -25,6 +25,13 @@ func AssetsLogTBName() string {
 }
 
 // BackendUserTBName 获取 BackendUser 对应的表名称
-func ProjectTBName() string {
-	return TableName("project")
+func WorkProjectTBName() string {
+	return TableName("work_project")
+}
+
+func WorkGroupTBName() string {
+	return TableName("work_group")
+}
+func WorkDayTBName() string {
+	return TableName("work_day")
 }
