@@ -11,17 +11,16 @@ func (c *WorkProject) TableName() string {
 }
 
 type WorkProject struct {
-	Id          int
-	Name    string
+	Id   int    `json:"id"`
+	Name string `json:"name"`
 }
 
-func ProjectList(page, pageSize int) ([]*WorkProject, int64) {
-	offset := (page - 1) * pageSize
+func ProjectList() ([]*WorkProject, int64) {
 	list := make([]*WorkProject, 0)
-	query := orm.NewOrm().QueryTable(AssetsTBName())
+	query := orm.NewOrm().QueryTable(WorkProjectTBName())
 
 	total, _ := query.Count()
-	num, err := query.OrderBy("-cost").Limit(pageSize, offset).All(&list)
+	num, err := query.OrderBy("-id").All(&list)
 	if err != nil {
 		beeLogger.Log.Errorf("PageList err", num, err)
 	}

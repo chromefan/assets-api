@@ -11,17 +11,16 @@ func (c *WorkGroup) TableName() string {
 }
 
 type WorkGroup struct {
-	Id          int
-	Name    string
+	Id   int    `json:"id"`
+	Name string `json:"name"`
 }
 
-func GroupList(page, pageSize int) ([]*WorkGroup, int64) {
-	offset := (page - 1) * pageSize
+func GroupList() ([]*WorkGroup, int64) {
 	list := make([]*WorkGroup, 0)
-	query := orm.NewOrm().QueryTable(AssetsTBName())
+	query := orm.NewOrm().QueryTable(WorkGroupTBName())
 
 	total, _ := query.Count()
-	num, err := query.OrderBy("-cost").Limit(pageSize, offset).All(&list)
+	num, err := query.OrderBy("-id").All(&list)
 	if err != nil {
 		beeLogger.Log.Errorf("PageList err", num, err)
 	}

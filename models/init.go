@@ -7,7 +7,7 @@ import (
 
 // init 初始化
 func init() {
-	orm.RegisterModel(new(Assets), new(AssetsLog),new(WorkDay),new(WorkGroup),new(WorkProject))
+	orm.RegisterModel(new(Assets), new(AssetsLog), new(WorkDay), new(WorkGroup), new(WorkProject))
 }
 
 // TableName 下面是统一的表名管理
