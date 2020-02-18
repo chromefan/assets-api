@@ -20,10 +20,11 @@ type workListResult struct {
 	Ctime     string `json:"ctime"`
 }
 type workGroup struct {
-	Id        int    `json:"id"`
-	Name      string `json:"name"`
-	WorkDayList []*models.WorkDay	`json:"workDaytList"`
+	Id          int               `json:"id"`
+	Name        string            `json:"name"`
+	WorkDayList []*models.WorkDay `json:"workDaytList"`
 }
+
 // @Title 创建卡片
 // @Description 创建卡片
 // @Param
@@ -41,12 +42,12 @@ func (c *BaseController) WorkList() {
 
 	groupList, _ := models.GroupList()
 	var workGroupList []workGroup
-	for _,v := range groupList {
+	for _, v := range groupList {
 		var wg workGroup
-		wg.WorkDayList , _ = models.WorkDayTotal(startTime, endTime, v.Id)
+		wg.WorkDayList, _ = models.WorkDayTotal(startTime, endTime, v.Id)
 		wg.Id = v.Id
 		wg.Name = v.Name
-		workGroupList = append(workGroupList,wg)
+		workGroupList = append(workGroupList, wg)
 	}
 	projectList, _ := models.ProjectList()
 	result := make(map[string]interface{})
